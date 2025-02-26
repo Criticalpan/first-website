@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ghosts Society - Home</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+  <style>
+    /* General Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #111;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: #000;
+      color: #fff;
+      padding: 20px 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+    }
+
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      height: 50px;
+      transition: transform 0.3s ease;
+    }
+
+    .logo:hover {
+      transform: scale(1.05);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 25px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+      color: #00ff99;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+      margin-left: 20px;
+    }
+
+    .search-bar input {
+      padding: 8px 12px;
+      border: 1px solid #444;
+      border-radius: 4px 0 0 4px;
+      background-color: #222;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.3s ease;
+    }
+
+    .search-bar input:focus {
+      border-color: #00ff99;
+    }
+
+    .search-bar button {
+      padding: 8px 12px;
+      border: 1px solid #444;
+      border-left: none;
+      border-radius: 0 4px 4px 0;
+      background-color: #222;
+      color: #fff;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .search-bar button:hover {
+      background-color: #333;
+    }
+
+    .search-bar i {
+      font-size: 1.2em;
+    }
+
+    /* Hero Section */
+    .hero {
+      padding-top: 80px;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-carousel,
+    .hero-carousel .owl-stage-outer,
+    .hero-carousel .owl-stage,
+    .hero-carousel .owl-item,
+    .hero-slide {
+      height: 100%;
+      width: 100%;
+    }
+
+    .hero-slide {
+      position: relative;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .hero-slide::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4));
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeInUp 1s ease;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content h1 {
+      font-size: 3.5em;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+
+    .hero-content p {
+      font-size: 1.5em;
+      margin-bottom: 30px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: #00ff99;
+      color: #000;
+      padding: 12px 30px;
+      text-decoration: none;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px rgba(0, 255, 153, 0.5);
+    }
+
+    .btn:hover {
+      background-color: #00cc7a;
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(0, 255, 153, 0.8);
+    }
+
+    /* Featured Products Section */
+    .featured-products {
+      padding: 80px 0;
+      background-color: #222;
+    }
+
+    .featured-products h2 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      position: relative;
+      background-color: #333;
+      padding: 20px;
+      text-align: center;
+      border: 1px solid #444;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+    }
+
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 255, 153, 0.2);
+    }
+
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+    }
+
+    .product-card h3 {
+      font-size: 1.5em;
+      margin-bottom: 10px;
+    }
+
+    .product-card p {
+      font-size: 1.2em;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .product-card .overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: height 0.3s ease;
+      overflow: hidden;
+    }
+
+    .product-card:hover .overlay {
+      height: 100%;
+    }
+
+    .product-card .overlay .btn {
+      opacity: 1;
+      position: static;
+      transform: none;
+    }
+
+    /* Why Shop Section */
+    .why-shop {
+      padding: 80px 0;
+      background-color: #111;
+    }
+
+    .why-shop h2 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+    }
+
+    .benefit-card {
+      text-align: center;
+      padding: 20px;
+      background-color: #222;
+      border: 1px solid #333;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 255, 153, 0.2);
+    }
+
+    .benefit-card i {
+      font-size: 2.5em;
+      margin-bottom: 15px;
+      color: #00ff99;
+    }
+
+    .benefit-card h3 {
+      font-size: 1.3em;
+      margin-bottom: 10px;
+    }
+
+    .benefit-card p {
+      color: #ccc;
+    }
+
+    /* Testimonials Section */
+    .testimonials {
+      padding: 80px 0;
+      background-color: #222;
+    }
+
+    .testimonials h2 {
+      text-align: center;
+      font-size: 2.5em;
+      margin-bottom: 40px;
+    }
+
+    .testimonial-card {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
+      border: 1px solid #444;
+    }
+
+    .testimonial-card p {
+      font-style: italic;
+      margin-bottom: 15px;
+    }
+
+    .testimonial-card span {
+      font-weight: 600;
+    }
+
+    /* Newsletter Section */
+    .newsletter {
+      padding: 80px 0;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+    }
+
+    .newsletter p {
+      margin-bottom: 20px;
+    }
+
+    .newsletter form {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .newsletter input {
+      padding: 12px;
+      width: 70%;
+      border: 1px solid #00ff99;
+      background-color: #111;
+      color: #fff;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .newsletter input:focus {
+      box-shadow: 0 0 15px rgba(0, 255, 153, 0.5);
+      outline: none;
+    }
+
+    .newsletter button {
+      background-color: #00ff99;
+      color: #000;
+      padding: 12px 30px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter button:hover {
+      background-color: #00cc7a;
+      box-shadow: 0 0 20px rgba(0, 255, 153, 0.8);
+      transform: scale(1.1);
+    }
+
+    /* Footer Section */
+    footer {
+      background-color: #000;
+      color: #fff;
+      padding: 30px 0;
+      text-align: center;
+    }
+
+    .footer-columns {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
+    }
+
+    .column {
+      width: 30%;
+      text-align: left;
+    }
+
+    .column h4 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .column ul {
+      list-style: none;
+    }
+
+    .column ul li a {
+      color: #fff;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    .column ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .column .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .social-links a {
+      color: #fff;
+      font-size: 1.5em;
+      margin: 0 10px;
+      transition: color 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: #ddd;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.5em;
+      }
+
+      .hero-content p {
+        font-size: 1.2em;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter form {
+        flex-direction: column;
+      }
+
+      .newsletter input {
+        width: 100%;
+      }
+
+      .footer-columns {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .column {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <header>
+    <div class="container">
+      <img src="images/ghost-logo.png" alt="Ghosts Society Logo" class="logo">
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="hoodie.html">Hoodie</a></li>
+          <li><a href="pants.html">Pants</a></li>
+        </ul>
+        <div class="search-bar">
+          <input type="text" placeholder="Search products">
+          <button><i class="fas fa-search"></i></button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="owl-carousel hero-carousel">
+      <div class="hero-slide" style="background-image: url('images/hero-1.jpg');">
+        <div class="hero-content">
+          <h1>Ghost Society</h1>
+          <p>Elevate Your Style with Exclusive Wear</p>
+          <a href="#featured-products" class="btn">Shop Now</a>
+        </div>
+      </div>
+      <div class="hero-slide" style="background-image: url('images/hero-2.jpg');">
+        <div class="hero-content">
+          <h1>Unmatched Quality</h1>
+          <p>Designed for the Bold and Modern</p>
+          <a href="#featured-products" class="btn">Explore Collection</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products Section -->
+  <section id="featured-products" class="featured-products">
+    <div class="container">
+      <h2>Featured Products</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="images/hoodie.jpg" alt="Hoodie">
+          <h3>Signature Hoodie</h3>
+          <p>$50.00</p>
+          <div class="overlay">
+            <a href="hoodie.html" class="btn">View Details</a>
+          </div>
+        </div>
+        <div class="product-card">
+          <img src="images/pants.jpg" alt="Pants">
+          <h3>Classic Pants</h3>
+          <p>$40.00</p>
+          <div class="overlay">
+            <a href="pants.html" class="btn">View Details</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Shop Section -->
+  <section class="why-shop">
+    <div class="container">
+      <h2>Why Choose Us</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <i class="fas fa-star"></i>
+          <h3>Premium Quality</h3>
+          <p>Crafted with the finest materials.</p>
+        </div>
+        <div class="benefit-card">
+          <i class="fas fa-paint-brush"></i>
+          <h3>Unique Designs</h3>
+          <p>Stand out with our bold aesthetics.</p>
+        </div>
+        <div class="benefit-card">
+          <i class="fas fa-shipping-fast"></i>
+          <h3>Fast Delivery</h3>
+          <p>Your order, delivered promptly.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials">
+    <div class="container">
+      <h2>Customer Reviews</h2>
+      <div class="owl-carousel testimonial-carousel">
+        <div class="testimonial-card">
+          <p>"Absolutely love the hoodie—stylish and cozy!"</p>
+          <span>- Emily R.</span>
+        </div>
+        <div class="testimonial-card">
+          <p>"The pants are a perfect fit and super durable."</p>
+          <span>- Alex T.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section class="newsletter">
+    <div class="container">
+      <h2>Join Our Community</h2>
+      <p>Subscribe for exclusive offers and updates.</p>
+      <form>
+        <input type="email" placeholder="Enter your email" required>
+        <button type="submit" class="btn">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <div class="container">
+      <div class="footer-columns">
+        <div class="column">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="faq.html">FAQs</a></li>
+            <li><a href="terms.html">Terms & Conditions</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+        <div class="column">
+          <h4>Follow Us</h4>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+      <p>© 2025 Ghost Society. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('.hero-carousel').owlCarousel({
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 5000, // 5 seconds per slide
+        autoplayHoverPause: true,
+        fade: true, // Fade transition
+        nav: false,
+        dots: true,
+      });
+
+      $('.testimonial-carousel').owlCarousel({
+        items: 1,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 4000,
+        nav: false,
+        dots: true,
+      });
+    });
+  </script>
+</body>
+</html>
